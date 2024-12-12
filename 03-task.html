@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 03</title>
+    <style>
+        div {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        /*
+        Задание:
+        Реализуйте сценарий, который при нажатии на клавиши 1, 2 или 3 на клавиатуре будет добавлять рамку
+        красного цвета на соответствующий div. Если зажаты клавиши Ctrl + A, то красная рамка добавляется сразу
+        для всех div
+        */
+
+        let boxes = Array.from(document.querySelectorAll("div"));
+        let n;
+        function changeColor(number) {
+            boxes[number - 1].style.border = "5px solid red";
+        }
+        function clear(number)
+        {
+            boxes[number - 1].style.border = "none";
+        }
+        document.addEventListener("keydown", function (e) {
+            switch (e.code) {
+                case "Digit1":
+                    n = 1;
+                    changeColor(n);
+                    clear(2);
+                    clear(3);
+                    break;
+                case "Digit2":
+                    n = 2;
+                    changeColor(n);
+                    clear(1);
+                    clear(3);
+                    break;
+                case "Digit3":
+                    n = 3;
+                    changeColor(n);
+                    clear(1);
+                    clear(2);
+                case "KeyA":
+                    if (e.ctrlKey) { // также выделяет все то, что находится на странице, не знаю как это убрать
+                        changeColor(1);
+                        changeColor(2);
+                        changeColor(3);
+                    }
+                    break;
+            }
+        });
+    </script>
+</body>
+
+</html>
